@@ -1,233 +1,228 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Mia Lettera di San Valentino</title>
-    <style>
-        :root {
-            --primary-red: #ff4d6d;
-            --soft-pink: #fff0f3;
-            --deep-red: #c9184a;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Per Te ❤️</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Georgia', serif;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
-        body {
-            background-color: var(--soft-pink);
-            background-image: radial-gradient(#ffb3c1 0.5px, transparent 0.5px);
-            background-size: 20px 20px; /* Effetto puntinato romantico */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-        /* Animazione Ingresso Cuore */
-        @keyframes heartPop {
-            0% { transform: scale(0) rotate(-5deg); opacity: 0; }
-            70% { transform: scale(1.1) rotate(2deg); }
-            100% { transform: scale(1) rotate(0); opacity: 1; }
-        }
+body{
+  height:100vh;
+  background: linear-gradient(135deg,#ff758c,#ffb199);
+  font-family:'Poppins',sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
 
-        .letter-container {
-            position: relative;
-            width: 90%;
-            max-width: 400px;
-            aspect-ratio: 1/1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: heartPop 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
+/* CUORICINI CHE CADONO */
+.heart-bg{
+  position:fixed;
+  top:-10px;
+  font-size:18px;
+  animation:fall linear forwards;
+  color:#ff4d6d;
+}
+@keyframes fall{
+  to{
+    transform:translateY(110vh);
+    opacity:0;
+  }
+}
 
-        /* Forma a Cuore */
-        .heart-shape {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            clip-path: path('M213.1,6.7c-27.3-4.4-54.6,0.1-71.5,24.8c-16.9-24.7-44.2-29.2-71.5-24.8C30.5,13.1,5,43.4,5,79.5c0,27.6,14.2,47.7,31.2,63c34.2,30.7,81.9,66.6,105.4,82.2c23.5-15.6,71.2-51.5,105.4-82.2c17-15.3,31.2-35.4,31.2-63C278.2,43.4,252.7,13.1,213.1,6.7z');
-            transform: scale(1.5); /* Adatta la forma al container */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+/* CONTENITORE CUORE DRITTO */
+.heart{
+  width:92vw;
+  max-width:380px;
+  height:500px;
+  background:#fff0f5;
+  border-radius:40px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.2);
+  padding:25px;
+  animation:pop 1.2s ease;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  text-align:center;
+}
 
-        /* Contenuto della Lettera */
-        .content-wrapper {
-            position: relative;
-            z-index: 2;
-            width: 70%;
-            height: 60%;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+@keyframes pop{
+  0%{transform:scale(0.2);opacity:0}
+  60%{transform:scale(1.1)}
+  100%{transform:scale(1)}
+}
 
-        .paragraph {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
+/* IMMAGINE */
+.image{
+  width:100%;
+  height:140px;
+  border-radius:14px;
+  background-size:cover;
+  background-position:center;
+  margin-bottom:10px;
+}
 
-        .paragraph.active {
-            display: block;
-        }
+/* TITOLO */
+.title{
+  font-family:'Dancing Script',cursive;
+  font-size:26px;
+  color:#d6336c;
+  margin-bottom:8px;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+/* TESTO */
+.text{
+  font-size:15px;
+  color:#444;
+  min-height:120px;
+  line-height:1.5;
+}
 
-        .paragraph img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary-red);
-            margin-bottom: 15px;
-        }
+/* FRECCE */
+.nav{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+}
+.arrow{
+  font-size:30px;
+  cursor:pointer;
+  transition:.2s;
+}
+.arrow:hover{transform:scale(1.2)}
 
-        .paragraph p {
-            color: #444;
-            font-size: 1.1rem;
-            line-height: 1.4;
-            font-style: italic;
-        }
+/* BOTTONE FINALE */
+.love-btn{
+  margin-top:10px;
+  background:#ff4d6d;
+  color:white;
+  border:none;
+  padding:10px;
+  border-radius:20px;
+  font-size:16px;
+  display:none;
+  animation:fade 1s;
+}
 
-        /* Frecce di Cupido */
-        .nav-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 10;
-            transition: transform 0.2s;
-        }
-
-        .nav-arrow:active { transform: translateY(-50%) scale(0.9); }
-
-        .arrow-left { left: -10px; }
-        .arrow-right { right: -10px; }
-
-        .cupid-arrow {
-            width: 50px;
-            fill: var(--deep-red);
-            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1));
-        }
-
-        .counter {
-            position: absolute;
-            bottom: 20px;
-            color: var(--deep-red);
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-    </style>
+@keyframes fade{
+  from{opacity:0}
+  to{opacity:1}
+}
+</style>
 </head>
 <body>
 
-    <div class="letter-container">
-        <div class="heart-shape"></div>
-        
-        <button class="nav-arrow arrow-left" onclick="changeParagraph(-1)">
-            <svg class="cupid-arrow" viewBox="0 0 100 100" style="transform: rotate(180deg);">
-                <path d="M10,50 L90,50 M90,50 L70,35 M90,50 L70,65 M20,40 C15,40 10,45 10,50 C10,55 15,60 20,60" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/>
-            </svg>
-        </button>
+<!-- MUSICA -->
+<audio autoplay loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
 
-        <div class="content-wrapper">
-            <div class="paragraph active">
-                <img src="https://via.placeholder.com/100/ff4d6d/ffffff?text=❤️" alt="Foto 1">
-                <p>Dal primo momento in cui ti ho visto, ho capito che la mia vita non sarebbe più stata la stessa.</p>
-            </div>
+<div class="heart">
+  <div>
+    <div id="img" class="image"></div>
+    <div class="title">Per Te ❤️</div>
+    <div id="text" class="text"></div>
+  </div>
 
-            <div class="paragraph">
-                <img src="https://via.placeholder.com/100/ff4d6d/ffffff?text=1" alt="Foto 2">
-                <p>Ogni tuo sorriso è come un raggio di sole che illumina anche le giornate più grigie.</p>
-            </div>
+  <div class="nav">
+    <div class="arrow" onclick="prev()">🏹</div>
+    <div class="arrow" onclick="next()">🏹</div>
+  </div>
 
-            <div class="paragraph">
-                <img src="https://via.placeholder.com/100/ff4d6d/ffffff?text=2" alt="Foto 3">
-                <p>Amo il modo in cui mi guardi e come riesci a capirmi senza bisogno di troppe parole.</p>
-            </div>
+  <button id="loveBtn" class="love-btn">Ti amo ❤️</button>
+</div>
 
-            <div class="paragraph">
-                <img src="https://via.placeholder.com/100/ff4d6d/ffffff?text=3" alt="Foto 4">
-                <p>Insieme abbiamo costruito ricordi che porto nel cuore come tesori preziosi.</p>
-            </div>
+<script>
+/* PARAGRAFI (MODIFICA QUI) */
+const paragraphs=[
+{
+text:"Da quando sei entrata nella mia vita, ogni giorno ha preso un colore diverso, più caldo, più bello.",
+img:"https://picsum.photos/400/200?1"
+},
+{
+text:"Il tuo sorriso è diventato il mio posto sicuro, quello in cui torno ogni volta che ho bisogno di stare bene.",
+img:"https://picsum.photos/400/200?2"
+},
+{
+text:"A volte mi fermo a pensare a quanto sia incredibile averti incontrata, quasi come se fosse stato destino.",
+img:"https://picsum.photos/400/200?3"
+},
+{
+text:"Con te anche le cose più semplici diventano speciali, perché sei tu a renderle così.",
+img:"https://picsum.photos/400/200?4"
+},
+{
+text:"Amo il modo in cui riesci a capirmi anche quando non dico nulla.",
+img:"https://picsum.photos/400/200?5"
+},
+{
+text:"Ogni ricordo con te è un piccolo tesoro che custodisco dentro di me.",
+img:"https://picsum.photos/400/200?6"
+},
+{
+text:"Non so cosa ci riserverà il futuro, ma so che lo voglio vivere accanto a te.",
+img:"https://picsum.photos/400/200?7"
+},
+{
+text:"Sei il mio pensiero felice, la mia scelta ogni giorno. Buon San Valentino amore mio ❤️",
+img:"https://picsum.photos/400/200?8"
+}
+];
 
-            <div class="paragraph">
-                <img src="https://via.placeholder.com/100/ff4d6d/ffffff?text=4" alt="Foto 5">
-                <p>Sei la mia spalla, la mia casa e la mia avventura preferita, ogni singolo giorno.</p>
-            </div>
+let index=0;
 
-            <div class="paragraph">
-                <img src="https://via.placeholder.com/100/ff4d6d/ffffff?text=5" alt="Foto 6">
-                <p>Non vedo l'ora di scoprire cosa ci riserva il futuro, mano nella mano.</p>
-            </div>
+/* EFFETTO SCRITTURA */
+function typeText(text){
+  const el=document.getElementById("text");
+  el.innerHTML="";
+  let i=0;
+  function typing(){
+    if(i<text.length){
+      el.innerHTML+=text.charAt(i);
+      i++;
+      setTimeout(typing,25);
+    }
+  }
+  typing();
+}
 
-            <div class="paragraph">
-                <img src="https://via.placeholder.com/100/ff4d6d/ffffff?text=6" alt="Foto 7">
-                <p>Grazie per essere esattamente come sei: unica, speciale e meravigliosa.</p>
-            </div>
+function show(){
+  document.getElementById("img").style.backgroundImage=`url('${paragraphs[index].img}')`;
+  typeText(paragraphs[index].text);
 
-            <div class="paragraph">
-                <img src="https://via.placeholder.com/100/ff4d6d/ffffff?text=Ti+Amo" alt="Foto 8">
-                <p>Buon San Valentino, amore mio. Il mio cuore è, e sarà sempre, tuo.</p>
-            </div>
+  if(index===7){
+    document.getElementById("loveBtn").style.display="block";
+  }
+}
 
-            <div class="counter" id="counter">1 / 8</div>
-        </div>
+function next(){
+  index=(index+1)%paragraphs.length;
+  show();
+}
+function prev(){
+  index=(index-1+paragraphs.length)%paragraphs.length;
+  show();
+}
 
-        <button class="nav-arrow arrow-right" onclick="changeParagraph(1)">
-            <svg class="cupid-arrow" viewBox="0 0 100 100">
-                <path d="M10,50 L90,50 M90,50 L70,35 M90,50 L70,65 M20,40 C15,40 10,45 10,50 C10,55 15,60 20,60" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/>
-            </svg>
-        </button>
-    </div>
+/* CUORICINI CHE CADONO */
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.className="heart-bg";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(3+Math.random()*5)+"s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),8000);
+}
+setInterval(createHeart,300);
 
-    <script>
-        let currentIdx = 0;
-        const paragraphs = document.querySelectorAll('.paragraph');
-        const counter = document.getElementById('counter');
+show();
+</script>
 
-        function changeParagraph(direction) {
-            // Rimuovi classe attiva corrente
-            paragraphs[currentIdx].classList.remove('active');
-            
-            // Calcola nuovo indice
-            currentIdx += direction;
-            
-            // Loop infinito
-            if (currentIdx >= paragraphs.length) currentIdx = 0;
-            if (currentIdx < 0) currentIdx = paragraphs.length - 1;
-            
-            // Aggiungi classe attiva al nuovo paragrafo
-            paragraphs[currentIdx].classList.add('active');
-            
-            // Aggiorna contatore
-            counter.innerText = `${currentIdx + 1} / ${paragraphs.length}`;
-        }
-
-        // Supporto per swipe su mobile
-        let touchstartX = 0;
-        let touchendX = 0;
-        
-        document.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX);
-        document.addEventListener('touchend', e => {
-            touchendX = e.changedTouches[0].screenX;
-            if (touchendX < touchstartX - 50) changeParagraph(1);
-            if (touchendX > touchstartX + 50) changeParagraph(-1);
-        });
-    </script>
 </body>
 </html>
