@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Mia Lettera di San Valentino</title>
+    <style>
+        :root {
+            --primary-red: #ff4d6d;
+            --soft-pink: #fff0f3;
+            --deep-red: #c9184a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+
+        body {
+            background-color: var(--soft-pink);
+            background-image: radial-gradient(#ffb3c1 0.5px, transparent 0.5px);
+            background-size: 20px 20px; /* Effetto puntinato romantico */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Animazione Ingresso Cuore */
+        @keyframes heartPop {
+            0% { transform: scale(0) rotate(-5deg); opacity: 0; }
+            70% { transform: scale(1.1) rotate(2deg); }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+
+        .letter-container {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            aspect-ratio: 1/1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: heartPop 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* Forma a Cuore */
+        .heart-shape {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            clip-path: path('M213.1,6.7c-27.3-4.4-54.6,0.1-71.5,24.8c-16.9-24.7-44.2-29.2-71.5-24.8C30.5,13.1,5,43.4,5,79.5c0,27.6,14.2,47.7,31.2,63c34.2,30.7,81.9,66.6,105.4,82.2c23.5-15.6,71.2-51.5,105.4-82.2c17-15.3,31.2-35.4,31.2-63C278.2,43.4,252.7,13.1,213.1,6.7z');
+            transform: scale(1.5); /* Adatta la forma al container */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Contenuto della Lettera */
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            width: 70%;
+            height: 60%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .paragraph {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .paragraph.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .paragraph img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-red);
+            margin-bottom: 15px;
+        }
+
+        .paragraph p {
+            color: #444;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        /* Frecce di Cupido */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+            transition: transform 0.2s;
+        }
+
+        .nav-arrow:active { transform: translateY(-50%) scale(0.9); }
+
+        .arrow-left { left: -10px; }
+        .arrow-right { right: -10px; }
+
+        .cupid-arrow {
+            width: 50px;
+            fill: var(--deep-red);
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1));
+        }
+
+        .counter {
+            position: absolute;
+            bottom: 20px;
+            color: var(--deep-red);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="letter-container">
+        <div class="heart-shape"></div>
+        
+        <button class="nav-arrow arrow-left" onclick="changeParagraph(-1)">
+            <svg class="cupid-arrow" viewBox="0 0 100 100" style="transform: rotate(180deg);">
+                <path d="M10,50 L90,50 M90,50 L70,35 M90,50 L70,65 M20,40 C15,40 10,45 10,50 C10,55 15,60 20,60" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+        <div class="content-wrapper">
+            <div class="paragraph active">
+                <img src="https://via.placeholder.com/100/ff4d6d/ffffff?text=❤️" alt="Foto 1">
+                <p>Dal primo momento in cui ti ho visto, ho capito che la mia vita non sarebbe più stata la stessa.</p>
+            </div>
+
+            <div class="paragraph">
+                <img src="https://via.placeholder.com/100/ff4d6d/ffffff?text=1" alt="Foto 2">
+                <p>Ogni tuo sorriso è come un raggio di sole che illumina anche le giornate più grigie.</p>
+            </div>
+
+            <div class="paragraph">
+                <img src="https://via.placeholder.com/100/ff4d6d/ffffff?text=2" alt="Foto 3">
+                <p>Amo il modo in cui mi guardi e come riesci a capirmi senza bisogno di troppe parole.</p>
+            </div>
+
+            <div class="paragraph">
+                <img src="https://via.placeholder.com/100/ff4d6d/ffffff?text=3" alt="Foto 4">
+                <p>Insieme abbiamo costruito ricordi che porto nel cuore come tesori preziosi.</p>
+            </div>
+
+            <div class="paragraph">
+                <img src="https://via.placeholder.com/100/ff4d6d/ffffff?text=4" alt="Foto 5">
+                <p>Sei la mia spalla, la mia casa e la mia avventura preferita, ogni singolo giorno.</p>
+            </div>
+
+            <div class="paragraph">
+                <img src="https://via.placeholder.com/100/ff4d6d/ffffff?text=5" alt="Foto 6">
+                <p>Non vedo l'ora di scoprire cosa ci riserva il futuro, mano nella mano.</p>
+            </div>
+
+            <div class="paragraph">
+                <img src="https://via.placeholder.com/100/ff4d6d/ffffff?text=6" alt="Foto 7">
+                <p>Grazie per essere esattamente come sei: unica, speciale e meravigliosa.</p>
+            </div>
+
+            <div class="paragraph">
+                <img src="https://via.placeholder.com/100/ff4d6d/ffffff?text=Ti+Amo" alt="Foto 8">
+                <p>Buon San Valentino, amore mio. Il mio cuore è, e sarà sempre, tuo.</p>
+            </div>
+
+            <div class="counter" id="counter">1 / 8</div>
+        </div>
+
+        <button class="nav-arrow arrow-right" onclick="changeParagraph(1)">
+            <svg class="cupid-arrow" viewBox="0 0 100 100">
+                <path d="M10,50 L90,50 M90,50 L70,35 M90,50 L70,65 M20,40 C15,40 10,45 10,50 C10,55 15,60 20,60" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        let currentIdx = 0;
+        const paragraphs = document.querySelectorAll('.paragraph');
+        const counter = document.getElementById('counter');
+
+        function changeParagraph(direction) {
+            // Rimuovi classe attiva corrente
+            paragraphs[currentIdx].classList.remove('active');
+            
+            // Calcola nuovo indice
+            currentIdx += direction;
+            
+            // Loop infinito
+            if (currentIdx >= paragraphs.length) currentIdx = 0;
+            if (currentIdx < 0) currentIdx = paragraphs.length - 1;
+            
+            // Aggiungi classe attiva al nuovo paragrafo
+            paragraphs[currentIdx].classList.add('active');
+            
+            // Aggiorna contatore
+            counter.innerText = `${currentIdx + 1} / ${paragraphs.length}`;
+        }
+
+        // Supporto per swipe su mobile
+        let touchstartX = 0;
+        let touchendX = 0;
+        
+        document.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX);
+        document.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            if (touchendX < touchstartX - 50) changeParagraph(1);
+            if (touchendX > touchstartX + 50) changeParagraph(-1);
+        });
+    </script>
+</body>
+</html>
