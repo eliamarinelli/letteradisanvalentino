@@ -64,12 +64,15 @@ body{
   border-radius:14px;
   margin-bottom:10px;
 
-  background-size: cover;      /* riempie e ritaglia */
-  background-position: center; /* centra il soggetto */
-  background-repeat: no-repeat;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 
-  overflow:hidden;
+  background-color:#ffd6e0; /* colore di fallback se immagine non carica */
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+  transition:opacity .35s ease, transform .35s ease;
 }
+
 
 
 /* TITOLO */
@@ -236,5 +239,6 @@ setInterval(createHeart,300);
 
 window.onload = show;
 </script>
+
 
 
