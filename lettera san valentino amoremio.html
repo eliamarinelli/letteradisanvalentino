@@ -62,10 +62,15 @@ body{
   width:100%;
   height:140px;
   border-radius:14px;
-  background-size:cover;
-  background-position:center;
   margin-bottom:10px;
+
+  background-size: cover;      /* riempie e ritaglia */
+  background-position: center; /* centra il soggetto */
+  background-repeat: no-repeat;
+
+  overflow:hidden;
 }
+
 
 /* TITOLO */
 .title{
@@ -231,4 +236,5 @@ setInterval(createHeart,300);
 
 window.onload = show;
 </script>
+
 
