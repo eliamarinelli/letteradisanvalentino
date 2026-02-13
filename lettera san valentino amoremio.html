@@ -1,230 +1,94 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Per Te ❤️</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-body{
-  height:100vh;
-  background: linear-gradient(135deg,#ff758c,#ffb199);
-  font-family:'Poppins',sans-serif;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
-
-/* CUORICINI CHE CADONO */
-.heart-bg{
-  position:fixed;
-  top:-10px;
-  font-size:18px;
-  animation:fall linear forwards;
-  color:#ff4d6d;
-}
-@keyframes fall{
-  to{
-    transform:translateY(110vh);
-    opacity:0;
-  }
-}
-
-/* CONTENITORE CUORE DRITTO */
-.heart{
-  width:92vw;
-  max-width:380px;
-  height:500px;
-  background:#fff0f5;
-  border-radius:40px;
-  box-shadow:0 15px 35px rgba(0,0,0,0.2);
-  padding:25px;
-  animation:pop 1.2s ease;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  text-align:center;
-}
-
-@keyframes pop{
-  0%{transform:scale(0.2);opacity:0}
-  60%{transform:scale(1.1)}
-  100%{transform:scale(1)}
-}
-
-/* IMMAGINE */
-.image{
-  width:100%;
-  height:140px;
-  border-radius:14px;
-  background-size:cover;
-  background-position:center;
-  margin-bottom:10px;
-}
-
-/* TITOLO */
-.title{
-  font-family:'Dancing Script',cursive;
-  font-size:26px;
-  color:#d6336c;
-  margin-bottom:8px;
-}
-
-/* TESTO */
-.text{
-  font-size:15px;
-  color:#444;
-  min-height:120px;
-  line-height:1.5;
-}
-
-/* FRECCE */
-.nav{
-  display:flex;
-  justify-content:space-between;
-  margin-top:10px;
-}
-.arrow{
-  font-size:30px;
-  cursor:pointer;
-  transition:.2s;
-}
-.arrow:hover{transform:scale(1.2)}
-
-/* BOTTONE FINALE */
-.love-btn{
-  margin-top:10px;
-  background:#ff4d6d;
-  color:white;
-  border:none;
-  padding:10px;
-  border-radius:20px;
-  font-size:16px;
-  display:none;
-  animation:fade 1s;
-}
-
-@keyframes fade{
-  from{opacity:0}
-  to{opacity:1}
-}
-</style>
-</head>
-<body>
-
-<!-- MUSICA -->
-<audio autoplay loop>
-  <source src="musica.mp3" type="audio/mpeg">
-</audio>
-
-<div class="heart">
-  <div>
-    <div id="img" class="image"></div>
-    <div class="title">Per Te ❤️</div>
-    <div id="text" class="text"></div>
-  </div>
-
-  <div class="nav">
-    <div class="arrow" onclick="prev()">🏹</div>
-    <div class="arrow" onclick="next()">🏹</div>
-  </div>
-
-  <button id="loveBtn" class="love-btn">Ti amo ❤️</button>
-</div>
-
 <script>
-/* PARAGRAFI (MODIFICA QUI) */
-const paragraphs=[
+const paragraphs = [
 {
-text:"Ciao Amore, ti scrivo questa piccola lettera per affiancare il regalo con qualcosa che penso e spero possa rimanere un po' di più. Spero ti piaccia.",
+text:`Ciao Amore, ti scrivo questa piccola lettera per affiancare il regalo con qualcosa che penso e spero possa rimanere un po' di più. Spero ti piaccia.`,
 img:"https://picsum.photos/400/200?1"
 },
 {
-text:"Era un po’ di tempo che ragionavo su cosa regalarti per il nostro primo san valentino insieme e non ti nego che di idee per la testa ne ho avute tante, più di quelle che io stesso potessi immaginare e non negherò il fatto che anche in questo la mia insicurezza abbia preso il sopravvento. ",
+text:`Era un po' di tempo che ragionavo su cosa regalarti per il nostro primo San Valentino insieme e non ti nego che di idee per la testa ne ho avute tante, più di quelle che io stesso potessi immaginare e non negherò il fatto che anche in questo la mia insicurezza abbia preso il sopravvento.`,
 img:"https://picsum.photos/400/200?2"
 },
 {
-text:"Volevo avvicinarmi il più possibile alla perfezione perché da quando stiamo insieme ho capito che forse ciò che conta non è il regalo, non è la cenetta insieme, non è il fare qualcosa ma sono i momenti a fare la differenza e beh passarli con te sono un qualcosa di stupendo, di speciale e che per nulla al mondo rimpiazzerei con qualsiasi altra cosa. ",
+text:`Volevo avvicinarmi il più possibile alla perfezione perché da quando stiamo insieme ho capito che forse ciò che conta non è il regalo, non è la cenetta insieme, non è il fare qualcosa ma sono i momenti a fare la differenza e beh passarli con te sono un qualcosa di stupendo, di speciale e che per nulla al mondo rimpiazzerei con qualsiasi altra cosa.`,
 img:"https://picsum.photos/400/200?3"
 },
 {
-text:"Stando con te ho poi scoperto che stare da soli non è poi così bello quando puoi avere una persona affianco che sa come prenderti, come farti ridere, che crede in te, ti dà fiducia e non si sa bene come ma sa esattamente come toglierti ogni pensiero di dosso quando l’unica cosa che vorresti fare è chiuderti in te stesso o urlare al mondo.",
+text:`Stando con te ho poi scoperto che stare da soli non è poi così bello quando puoi avere una persona affianco che sa come prenderti, come farti ridere, che crede in te, ti dà fiducia e sa esattamente come toglierti ogni pensiero di dosso quando l’unica cosa che vorresti fare è chiuderti in te stesso.`,
 img:"https://picsum.photos/400/200?4"
 },
 {
-text:"In questi mesi sei stata una parte molto importante di me, forse la più importante, e con questo vorrei spiegare il significato del mio regalo, o meglio quello che gli ho voluto dare, dato che sei l’unica che riesce a farmi sorridere come un bimbo con un solo sguardo, che con un sorriso mi riempi di gioia e che mi fa sentire come se fosse sempre la prima volta ad ogni bacio, ogni abbraccio, ogni dimostrazione d’affetto che non so come riesco a tirarti fuori. ",
+text:`In questi mesi sei stata una parte molto importante di me, forse la più importante. Sei l’unica che riesce a farmi sorridere come un bimbo con un solo sguardo e che con un sorriso mi riempie di gioia.`,
 img:"https://picsum.photos/400/200?5"
 },
 {
-text:"Questo mazzo di fiori penso che vero, per quanto bello, non dia lo stesso effetto. ci tengo che ogni mattoncino che venga unito rappresenti per noi la crescita che abbiamo avuto in questi mesi e quella che avverrà passo dopo passo insieme. mi piace poter pensare che ad ogni fiore si possa attribuire un bel momento o un significato particolare, unico, esattamente come te.",
+text:`Questo mazzo di fiori penso che, per quanto bello, non dia lo stesso effetto. Ogni mattoncino rappresenta per noi la crescita che abbiamo avuto e quella che avverrà passo dopo passo insieme.`,
 img:"https://picsum.photos/400/200?6"
 },
 {
-text:"La bellezza di questi fiori credo che non si avvicini minimamente alla tua, ma come decorano possono rappresentare una piccola parte di come decori tu ogni giorno la mia vita e mi rendi fiero di averti accanto.",
+text:`La bellezza di questi fiori non si avvicina minimamente alla tua, ma possono rappresentare una piccola parte di come decori tu ogni giorno la mia vita.`,
 img:"https://picsum.photos/400/200?7"
 },
 {
-text:"Buon San Valentino amore mio ❤️, 
-  con affetto, Elia❤️",
+text:`Buon San Valentino amore mio ❤️  
+Con affetto,  
+Elia ❤️`,
 img:"https://picsum.photos/400/200?8"
 }
 ];
 
-let index=0;
+let index = 0;
 
-/* EFFETTO SCRITTURA */
 function typeText(text){
-  const el=document.getElementById("text");
-  el.innerHTML="";
-  let i=0;
+  const el = document.getElementById("text");
+  el.innerHTML = "";
+  let i = 0;
   function typing(){
-    if(i<text.length){
-      el.innerHTML+=text.charAt(i);
+    if(i < text.length){
+      el.innerHTML += text.charAt(i);
       i++;
-      setTimeout(typing,25);
+      setTimeout(typing, 20);
     }
   }
   typing();
 }
 
 function show(){
-  document.getElementById("img").style.backgroundImage=`url('${paragraphs[index].img}')`;
+  const imgEl = document.getElementById("img");
+  const textEl = document.getElementById("text");
+
+  if(!paragraphs[index]) return;
+
+  imgEl.style.backgroundImage = "url('" + paragraphs[index].img + "')";
   typeText(paragraphs[index].text);
 
-  if(index===7){
-    document.getElementById("loveBtn").style.display="block";
+  if(index === paragraphs.length - 1){
+    document.getElementById("loveBtn").style.display = "block";
+  } else {
+    document.getElementById("loveBtn").style.display = "none";
   }
 }
 
 function next(){
-  index=(index+1)%paragraphs.length;
-  show();
-}
-function prev(){
-  index=(index-1+paragraphs.length)%paragraphs.length;
+  index = (index + 1) % paragraphs.length;
   show();
 }
 
-/* CUORICINI CHE CADONO */
+function prev(){
+  index = (index - 1 + paragraphs.length) % paragraphs.length;
+  show();
+}
+
 function createHeart(){
-  const heart=document.createElement("div");
-  heart.className="heart-bg";
-  heart.innerHTML="❤️";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.animationDuration=(3+Math.random()*5)+"s";
+  const heart = document.createElement("div");
+  heart.className = "heart-bg";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.animationDuration = (3 + Math.random()*5) + "s";
   document.body.appendChild(heart);
   setTimeout(()=>heart.remove(),8000);
 }
+
 setInterval(createHeart,300);
 
-show();
+window.onload = show;
 </script>
-
-</body>
-</html>
-
