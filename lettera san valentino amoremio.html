@@ -20,7 +20,7 @@ body{
   overflow:hidden;
 }
 
-/* CUORICINI CHE CADONO */
+/* CUORICINI */
 .heart-bg{
   position:fixed;
   top:-10px;
@@ -29,13 +29,10 @@ body{
   color:#ff4d6d;
 }
 @keyframes fall{
-  to{
-    transform:translateY(110vh);
-    opacity:0;
-  }
+  to{transform:translateY(110vh);opacity:0;}
 }
 
-/* CONTENITORE CUORE DRITTO */
+/* CARD */
 .heart{
   width:92vw;
   max-width:380px;
@@ -50,40 +47,39 @@ body{
   justify-content:space-between;
   text-align:center;
 }
-
 @keyframes pop{
   0%{transform:scale(0.2);opacity:0}
   60%{transform:scale(1.1)}
   100%{transform:scale(1)}
 }
 
-/* IMMAGINE */
+/* FOTO */
 .image{
   width:100%;
-  height:140px;
+  height:150px;
   border-radius:14px;
   margin-bottom:10px;
-
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
-
-  background-color:#ffd6e0; /* colore di fallback se immagine non carica */
+  background-color:#ffd6e0;
   box-shadow:0 4px 12px rgba(0,0,0,0.15);
-  transition:opacity .35s ease, transform .35s ease;
+  opacity:0;
+  transform:scale(1.05);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.image.show{
+  opacity:1;
+  transform:scale(1);
 }
 
-
-
-/* TITOLO */
+/* TESTI */
 .title{
   font-family:'Dancing Script',cursive;
   font-size:26px;
   color:#d6336c;
   margin-bottom:8px;
 }
-
-/* TESTO */
 .text{
   font-size:15px;
   color:#444;
@@ -100,11 +96,10 @@ body{
 .arrow{
   font-size:30px;
   cursor:pointer;
-  transition:.2s;
 }
 .arrow:hover{transform:scale(1.2)}
 
-/* BOTTONE FINALE */
+/* BOTTONE */
 .love-btn{
   margin-top:10px;
   background:#ff4d6d;
@@ -114,18 +109,11 @@ body{
   border-radius:20px;
   font-size:16px;
   display:none;
-  animation:fade 1s;
-}
-
-@keyframes fade{
-  from{opacity:0}
-  to{opacity:1}
 }
 </style>
 </head>
 <body>
 
-<!-- MUSICA -->
 <audio autoplay loop>
   <source src="musica.mp3" type="audio/mpeg">
 </audio>
@@ -138,110 +126,100 @@ body{
   </div>
 
   <div class="nav">
-    <div class="arrow" onclick="prev()">🏹</div>
-    <div class="arrow" onclick="next()">🏹</div>
+    <div class="arrow" onclick="prev()">⬅️</div>
+    <div class="arrow" onclick="next()">➡️</div>
   </div>
 
   <button id="loveBtn" class="love-btn">Ti amo ❤️</button>
 </div>
 
 <script>
-const paragraphs = [
-{
-text:`Ciao Amore, ti scrivo questa piccola lettera per affiancare il regalo con qualcosa che penso e spero possa rimanere un po' di più. Spero ti piaccia.`,
-img:"https://github.com/eliamarinelli/letteradisanvalentino/blob/main/IMG_8586.jpeg"
-},
-{
-text:`Era un po' di tempo che ragionavo su cosa regalarti per il nostro primo San Valentino insieme e non ti nego che di idee per la testa ne ho avute tante, più di quelle che io stesso potessi immaginare e non negherò il fatto che anche in questo la mia insicurezza abbia preso il sopravvento.`,
-img:"https://photos.app.goo.gl/Khp4PqhitRdnayoeA"
-},
-{
-text:`Volevo avvicinarmi il più possibile alla perfezione perché da quando stiamo insieme ho capito che forse ciò che conta non è il regalo, non è la cenetta insieme, non è il fare qualcosa ma sono i momenti a fare la differenza e beh passarli con te sono un qualcosa di stupendo, di speciale e che per nulla al mondo rimpiazzerei con qualsiasi altra cosa.`,
-img:"https://photos.app.goo.gl/EFfVMLtfbFeaMSpZ6"
-},
-{
-text:`Stando con te ho poi scoperto che stare da soli non è poi così bello quando puoi avere una persona affianco che sa come prenderti, come farti ridere, che crede in te, ti dà fiducia e sa esattamente come toglierti ogni pensiero di dosso quando l’unica cosa che vorresti fare è chiuderti in te stesso.`,
-img:"https://photos.app.goo.gl/q1xky133iEHU4otF8"
-},
-{
-text:`In questi mesi sei stata una parte molto importante di me, forse la più importante. Sei l’unica che riesce a farmi sorridere come un bimbo con un solo sguardo e che con un sorriso mi riempie di gioia.`,
-img:"https://photos.app.goo.gl/MFqzVBMyot2W3rPa6"
-},
-{
-text:`Questo mazzo di fiori penso che, per quanto bello, non dia lo stesso effetto. Ogni mattoncino rappresenta per noi la crescita che abbiamo avuto e quella che avverrà passo dopo passo insieme.`,
-img:"https://photos.app.goo.gl/jBTCsfbmv9CritVE6"
-},
-{
-text:`La bellezza di questi fiori non si avvicina minimamente alla tua, ma possono rappresentare una piccola parte di come decori tu ogni giorno la mia vita.`,
-img:"https://photos.app.goo.gl/aWfjhgsXb8pvnGjF8"
-},
-{
-text:`Buon San Valentino amore mio ❤️  
+const images = [
+"109dd66b-8864-4d27-88f7-c0858dcc5b88.jpeg",
+"IMG_8586.jpeg",
+"IMG_8604.jpeg",
+"IMG_8608.jpeg",
+"IMG_8622.jpeg",
+"IMG_8659.jpeg",
+"IMG_8661.jpeg",
+"IMG_8662.jpeg",
+"IMG_8663.jpeg",
+"IMG_8667.jpeg"
+];
+
+// RANDOMIZZA IMMAGINI
+images.sort(()=>Math.random()-0.5);
+
+const texts = [
+`Ciao Amore, ti scrivo questa piccola lettera per affiancare il regalo con qualcosa che penso e spero possa rimanere un po' di più. Spero ti piaccia.`,
+`Era un po' di tempo che ragionavo su cosa regalarti per il nostro primo San Valentino insieme...`,
+`Volevo avvicinarmi il più possibile alla perfezione perché da quando stiamo insieme ho capito che i momenti con te sono ciò che conta davvero.`,
+`Stando con te ho scoperto che stare da soli non è poi così bello quando hai accanto qualcuno che sa farti sorridere.`,
+`In questi mesi sei stata una parte importantissima della mia vita.`,
+`Ogni momento insieme è qualcosa che non cambierei per nulla al mondo.`,
+`Sei la persona che riesce a farmi sorridere anche nelle giornate più storte.`,
+`Questo piccolo pensiero rappresenta ciò che stiamo costruendo insieme.`,
+`La tua presenza rende tutto più bello.`,
+`Buon San Valentino amore mio ❤️  
 Con affetto,  
-Elia ❤️`,
-img:"https://photos.app.goo.gl/DHx3Yv3NjTyYnn6c6"
-}
+Elia ❤️`
 ];
 
 let index = 0;
 
 function typeText(text){
   const el = document.getElementById("text");
-  el.innerHTML = "";
-  let i = 0;
-  function typing(){
-    if(i < text.length){
-      el.innerHTML += text.charAt(i);
+  el.innerHTML="";
+  let i=0;
+  function t(){
+    if(i<text.length){
+      el.innerHTML+=text.charAt(i);
       i++;
-      setTimeout(typing, 20);
+      setTimeout(t,20);
     }
   }
-  typing();
+  t();
 }
 
 function show(){
   const imgEl = document.getElementById("img");
-  const textEl = document.getElementById("text");
+  imgEl.classList.remove("show");
 
-  if(!paragraphs[index]) return;
+  const url="https://raw.githubusercontent.com/eliamarinelli/letteradisanvalentino/main/"+images[index];
+  imgEl.style.backgroundImage="url('"+url+"')";
 
-  imgEl.style.backgroundImage = "url('" + paragraphs[index].img + "')";
-  typeText(paragraphs[index].text);
+  setTimeout(()=>imgEl.classList.add("show"),50);
 
-  if(index === paragraphs.length - 1){
-    document.getElementById("loveBtn").style.display = "block";
-  } else {
-    document.getElementById("loveBtn").style.display = "none";
-  }
+  typeText(texts[index]);
+
+  if(index===texts.length-1)
+    document.getElementById("loveBtn").style.display="block";
+  else
+    document.getElementById("loveBtn").style.display="none";
 }
 
 function next(){
-  index = (index + 1) % paragraphs.length;
+  index=(index+1)%texts.length;
   show();
 }
-
 function prev(){
-  index = (index - 1 + paragraphs.length) % paragraphs.length;
+  index=(index-1+texts.length)%texts.length;
   show();
 }
 
+/* CUORICINI */
 function createHeart(){
-  const heart = document.createElement("div");
-  heart.className = "heart-bg";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random()*100 + "vw";
-  heart.style.animationDuration = (3 + Math.random()*5) + "s";
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),8000);
+  const h=document.createElement("div");
+  h.className="heart-bg";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(3+Math.random()*5)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8000);
 }
-
 setInterval(createHeart,300);
 
-window.onload = show;
+window.onload=show;
 </script>
-
-
-
-
-
-
+</body>
+</html>
